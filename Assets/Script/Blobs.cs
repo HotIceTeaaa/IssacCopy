@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Blobs : MonoBehaviour
 {
-    private GameObject player;
+    [SerializeField] private GameObject player;
     [SerializeField] private float hp;
     [SerializeField] private float shootTimer;
     [SerializeField] private GameObject pellets;
@@ -26,9 +26,9 @@ public class Blobs : MonoBehaviour
             shootTimer = 5f;
 
             GameObject bombInstance = null;
-            Vector3 direction = player.transform.position - transform.position;
-            direction = Quaternion.Euler(0, 0, 90) * direction;
-            bombInstance = Instantiate(pellets, transform.position, Quaternion.LookRotation(direction));
+            Vector2 direction = (player.transform.position - transform.position).normalized;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90.0f;
+            bombInstance = Instantiate(pellets, transform.position, Quaternion.Euler(0, 0, angle));
             Destroy(bombInstance, 2);
         }
     }
