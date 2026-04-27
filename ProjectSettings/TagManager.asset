@@ -9,6 +9,8 @@ TagManager:
   - potion
   - pellets
   - walls
+  - bomb
+  - spawner
   layers:
   - Default
   - TransparentFX
@@ -16,8 +18,8 @@ TagManager:
   - Enemies
   - Water
   - UI
-  - bulletLayer
-  - 
+  - playerProjectile
+  - consumables
   - 
   - 
   - 

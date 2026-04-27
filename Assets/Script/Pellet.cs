@@ -28,7 +28,8 @@ public class Pellet : MonoBehaviour {
             Destroy(gameObject);
         }
 
-        if (other.gameObject.tag == "walls") {
+        if (other.gameObject.tag == "walls" ||
+            other.gameObject.tag == "bomb") {
             Destroy(gameObject);
         }
     }

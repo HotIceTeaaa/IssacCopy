@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -39,7 +40,16 @@ public class Bomb : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (other.gameObject.tag == "walls") {
+        if (other.gameObject.tag == "spawner") {
+            spawner spawner = other.GetComponent<spawner>();
+            spawner.takeDamage(bombDmg);
+
+            //destroy self
+            Destroy(gameObject);
+        }
+
+        if (other.gameObject.tag == "walls" ||
+            other.gameObject.tag == "pellets") {
             Destroy(gameObject);
         }
     }

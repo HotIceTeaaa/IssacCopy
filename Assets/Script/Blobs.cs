@@ -6,6 +6,7 @@ public class Blobs : MonoBehaviour {
     [SerializeField] private float hp;
     [SerializeField] private float shootTimer;
     [SerializeField] private GameObject pellets;
+    [SerializeField] private GameObject currentRoom;
     void Start() {
         shootTimer = 2f;
         hp = 3f;
@@ -34,6 +35,8 @@ public class Blobs : MonoBehaviour {
 
         if (hp <= 0) {
             Destroy(gameObject);
+            room roomScript = gameManager.instance.getCurrentRoom().GetComponent<room>();
+            roomScript.decrementBlobCount();
         }
     }
 }

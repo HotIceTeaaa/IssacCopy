@@ -9,14 +9,16 @@ public class Issac : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject bomb;
     [SerializeField] private float hp;
+    [SerializeField] private float maxHP;
     [SerializeField] private RectTransform rt;
     [SerializeField] private GameObject dmgPopup;
+    private float widthHPBar;
 
-    private float maxHP;
     void Start()
     {
+        widthHPBar = rt.sizeDelta.x;
         hp = 300f;
-        maxHP = hp;
+        maxHP = 305f;
     }
 
     void Update()
@@ -37,14 +39,14 @@ public class Issac : MonoBehaviour
                 bombInstance = Instantiate(bomb, transform.position, Quaternion.Euler(0, 0, 270));
             }
             animator.SetTrigger("shootTrigger");
-            Destroy(bombInstance, 5);
+            Destroy(bombInstance, 2);
         }
     }
 
     public void increaseHP(float amount) {
         Debug.Log("increase");
         hp += amount;
-        hp = Mathf.Min(hp, 5);
+        hp = Mathf.Min(hp, maxHP);
     }
 
     public void takeDamage(float dmg) {
@@ -59,13 +61,15 @@ public class Issac : MonoBehaviour
     }
 
     public void updateHealthBar() {
-        float newWidth = rt.sizeDelta.x * hp / maxHP;
+        float newWidth = widthHPBar * hp / maxHP;
         Vector2 temp = new Vector2(newWidth, rt.sizeDelta.y);
         rt.sizeDelta = temp;
     }
 
     public void summonDmgPopup() {
-        GameObject text = Instantiate(dmgPopup, transform.position, Quaternion.Euler(0, 0, 0));
+        float angle = 5;
+        angle *= Random.Range(-9, 9);
+        GameObject text = Instantiate(dmgPopup, transform.position, Quaternion.Euler(0, 0, angle));
         Destroy(text, 1);
     }
 }
