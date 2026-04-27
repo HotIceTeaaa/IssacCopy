@@ -142,6 +142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8203e1dcf6e1c9e4c9992fba17e1f4da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 8326779920259046081, guid: a67bf783f0cbf3849afcfcf34ca16482, type: 3}
   hp: 0
   shootTimer: 0
   pellets: {fileID: 1244607302492897836, guid: 9fe29776322e3894994f4883def9744a, type: 3}

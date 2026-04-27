@@ -38,5 +38,9 @@ public class Bomb : MonoBehaviour
             //destroy self
             Destroy(gameObject);
         }
+
+        if (other.gameObject.tag == "walls") {
+            Destroy(gameObject);
+        }
     }
 }

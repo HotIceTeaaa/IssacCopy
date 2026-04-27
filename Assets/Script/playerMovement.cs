@@ -55,4 +55,8 @@ public class playerMovement : MonoBehaviour
 
         rigidBody.velocity = movementVector.normalized * speed;
     }
+
+    public void setPosition(float x, float y) {
+        transform.position = new Vector2(x, y);
+    }
 }

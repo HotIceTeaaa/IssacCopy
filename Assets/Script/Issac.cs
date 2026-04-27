@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Issac : MonoBehaviour
 {
@@ -8,9 +9,14 @@ public class Issac : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject bomb;
     [SerializeField] private float hp;
+    [SerializeField] private RectTransform rt;
+    [SerializeField] private GameObject dmgPopup;
+
+    private float maxHP;
     void Start()
     {
-        hp = 3f;
+        hp = 300f;
+        maxHP = hp;
     }
 
     void Update()
@@ -44,8 +50,22 @@ public class Issac : MonoBehaviour
     public void takeDamage(float dmg) {
         hp -= dmg;
 
+        updateHealthBar();
+        summonDmgPopup();
+
         if (hp <= 0) {
             Destroy(gameObject);
         }
+    }
+
+    public void updateHealthBar() {
+        float newWidth = rt.sizeDelta.x * hp / maxHP;
+        Vector2 temp = new Vector2(newWidth, rt.sizeDelta.y);
+        rt.sizeDelta = temp;
+    }
+
+    public void summonDmgPopup() {
+        GameObject text = Instantiate(dmgPopup, transform.position, Quaternion.Euler(0, 0, 0));
+        Destroy(text, 1);
     }
 }
