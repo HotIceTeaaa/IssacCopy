@@ -1,7 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
+
 
 public class playerMovement : MonoBehaviour
 {
@@ -19,7 +18,6 @@ public class playerMovement : MonoBehaviour
 
     void Update()
     {
-
         handleMovement();
     }
 
@@ -54,5 +52,9 @@ public class playerMovement : MonoBehaviour
         }
 
         rigidBody.velocity = movementVector.normalized * speed;
+    }
+
+    public void setPosition(Vector3 pos) {
+        transform.position = pos;
     }
 }

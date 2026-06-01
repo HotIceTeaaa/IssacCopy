@@ -1,28 +1,26 @@
 using TMPro;
 using UnityEngine;
 
-public class Blobs : MonoBehaviour
-{
+public class Blobs : MonoBehaviour {
     [SerializeField] private GameObject player;
     [SerializeField] private float hp;
     [SerializeField] private float shootTimer;
     [SerializeField] private GameObject pellets;
-    void Start()
-    {
-        shootTimer = 5f;
+    [SerializeField] private GameObject currentRoom;
+    void Start() {
+        shootTimer = 2f;
         hp = 3f;
         player = GameObject.FindGameObjectWithTag("Player");
 
     }
 
-    void Update()
-    {
+    void Update() {
         handleShoot();
     }
 
     private void handleShoot() {
-        shootTimer -= Time.deltaTime; 
-        if(shootTimer < 0) {
+        shootTimer -= Time.deltaTime;
+        if (shootTimer < 0) {
             shootTimer = 5f;
 
             GameObject bombInstance = null;
@@ -37,6 +35,8 @@ public class Blobs : MonoBehaviour
 
         if (hp <= 0) {
             Destroy(gameObject);
+            room roomScript = gameManager.instance.getCurrentRoom().GetComponent<room>();
+            roomScript.decrementBlobCount();
         }
-    } 
+    }
 }

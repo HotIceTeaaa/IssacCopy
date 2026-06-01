@@ -27,5 +27,10 @@ public class Pellet : MonoBehaviour {
             //destroy self
             Destroy(gameObject);
         }
+
+        if (other.gameObject.tag == "walls" ||
+            other.gameObject.tag == "bomb") {
+            Destroy(gameObject);
+        }
     }
 }

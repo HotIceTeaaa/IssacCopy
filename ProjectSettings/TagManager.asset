@@ -7,6 +7,10 @@ TagManager:
   - Blob
   - chest
   - potion
+  - pellets
+  - walls
+  - bomb
+  - spawner
   layers:
   - Default
   - TransparentFX
@@ -14,8 +18,8 @@ TagManager:
   - Enemies
   - Water
   - UI
-  - 
-  - 
+  - playerProjectile
+  - consumables
   - 
   - 
   - 
